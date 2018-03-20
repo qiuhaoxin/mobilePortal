@@ -1,0 +1,7 @@
+{
+	"preset":[
+       "react",
+       "react-app"
+	],
+	"plugin":["syntax-dynamic-import"]
+}
