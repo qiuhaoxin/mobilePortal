@@ -88,19 +88,19 @@ module.exports={
                        	  	plugins:['transform-decorators-legacy'],
                        	  }
                        },
-                       {
-                       	   loader:require.resolve('eslint-loader'),
-                       	   options:{
-                       	   	   formatter:eslintFormatter,
-                       	   	   eslintPath:require.resolve('eslint'),
-                       	   	   baseConfig:{
-                       	   	   	   extends:[require.resolve('eslint-config-react-app')]
-                       	   	   },
-                       	   	   ignore:false,
-                       	   	   useEslintrc:false
+                       // {
+                       // 	   loader:require.resolve('eslint-loader'),
+                       // 	   options:{
+                       // 	   	   formatter:eslintFormatter,
+                       // 	   	   eslintPath:require.resolve('eslint'),
+                       // 	   	   baseConfig:{
+                       // 	   	   	   extends:[require.resolve('eslint-config-react-app')]
+                       // 	   	   },
+                       // 	   	   ignore:false,
+                       // 	   	   useEslintrc:false
 
-                       	   },
-                       },
+                       // 	   },
+                       // },
                  	]
                 },
                 {
