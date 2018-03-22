@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {HashRouter,Switch,Route,Redirect} from 'react-router-dom';
-import asyncComponent from '../utils/utils';
+import asyncComponent from '../utils/asyncComponent';
 
 const mainpage=asyncComponent(()=>import('../pages/MainPage/index.jsx'));
 const deployment=asyncComponent(()=>import('../pages/Deployment/index.jsx'));
