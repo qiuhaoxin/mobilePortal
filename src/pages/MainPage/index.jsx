@@ -4,9 +4,12 @@ export default class MyComponent extends Component{
 	 constructor(props){
 	    super(props);
 	 }
+	 state={
+	    carousetData:[{dataSrc:''}]
+	 }
 	 render(){
 	    return (
-            <div>
+            <div className="carouset-wrapper">
                <Carouset />
             </div>
 	    )

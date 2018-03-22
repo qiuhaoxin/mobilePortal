@@ -5,6 +5,7 @@ import Route from './router/index';
 import {AppContainer} from 'react-hot-loader';
 import {Provider} from 'react-redux';
 import store from './store/store';
+import './index.less';
 
 
 fastclick.attach(document.body);

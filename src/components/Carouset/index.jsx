@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 
-import from './index.less';
+import './index.less';
+import u47 from '../../images/mainpage/u47.png';
 
 export default class MyComponent extends Component{
 	constructor(props){
@@ -11,12 +12,15 @@ export default class MyComponent extends Component{
 	   
 	}
 	render(){
-	   render(){
 	      return (
              <div className="carouset-wrapper">
-
+                  <ul>
+                     <li>
+                         <img src={u47} style={{width:'450px',height:'298px'}}/>
+                     </li>
+                  </ul>
              </div>
 	      )
-	   }
+	   
 	}
 }
