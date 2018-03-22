@@ -25,7 +25,7 @@ const getPublicUrl=appPackageJson=>envPublicUrl || require(appPackageJson).homep
 function getServedPath(appPackageJson){
 	const publicUrl=getPublicUrl(appPackageJson);
 	const serveUrl=envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname:'/');
-	return ensureSlash(servedUrl,true)
+	return ensureSlash(serveUrl,true)
 }
 
 module.exports={

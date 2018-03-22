@@ -3,7 +3,7 @@
 process.env.NODE_ENV='development';		
 process.env.BABEL_ENV='development';
 process.env.STATIC_ENV='development';
-
+console.log("precess env NODE_ENV is "+process.env.NODE_ENV);
 process.on('unhandleRejection',err=>{
 	throw err;
 });
@@ -13,15 +13,15 @@ const fs=require('fs');
 const chalk=require('chalk');
 const webpack=require('webpack');
 const WebpackDevServer=require('webpack-dev-server');
-const clearConsole=require('react-dev-uitls/clearConsole');
-const checkRequireFiles=require('react-dev-utils/checkRequireFiles');
+const checkRequiredFiles=require('react-dev-utils/checkRequiredFiles');
+const clearConsole=require('react-dev-utils/clearConsole');
 const {
 	choosePort,
 	createCompiler,
 	prepareProxy,
 	prepareUrls
-}=require('react-dev-uitls/WebpackDevServerUtils');
-const openBrowser=require('react-dev-uitls/openBrowser');
+}=require('react-dev-utils/WebpackDevServerUtils');
+const openBrowser=require('react-dev-utils/openBrowser');
 
 const paths=require('../config/paths');
 const config=require('../config/webpack.config.dev.js');
@@ -30,13 +30,13 @@ const createDevServerConfig=require('../config/webpackDevserver.config');
 const useYarn=fs.existsSync(paths.yarnLockFile);
 const isInteractive=process.stdout.isTTY;
 
-if(!checkRequireFiles([paths.appHtml,paths.appIndexJs])){
+if(!checkRequiredFiles([paths.appHtml,paths.appIndexJs])){
 	process.exit(1);
 }
 
-const DEFAULT_PORT=parseInt(process.env.PORT)||8008;
+const DEFAULT_PORT=parseInt(process.env.PORT,10)||8008;
 
-const HOST=process.env.HOST || '0,0,0,0';
+const HOST=process.env.HOST || '0.0.0.0';
 
 choosePort(HOST,DEFAULT_PORT)
 .then(port=>{
@@ -44,7 +44,7 @@ choosePort(HOST,DEFAULT_PORT)
 		return;
 	}
 	const protocol=process.env.HTTPS==='true'?'https':'http';
-	const appName=require(path.appPackageJson).name;
+	const appName=require(paths.appPackageJson).name;
 	const url=prepareUrls(protocol,HOST,port);
 
 	const compiler=createCompiler(webpack,config,appName,url,useYarn);
@@ -55,7 +55,7 @@ choosePort(HOST,DEFAULT_PORT)
 
 	devServer.listen(port,HOST,err=>{
 		if(err){
-			return config.log(err);
+			return config.log("error is "+err);
 		}
 		if(isInteractive){
 			clearConsole();
