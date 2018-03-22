@@ -1,6 +1,6 @@
 import * as mainpage from './action-type';
 
-lef defaultState={
+let defaultState={
 	orderSum:'',
 	name:'',
 	
@@ -8,7 +8,7 @@ lef defaultState={
 export const formData=(state=defaultState,action={})=>{
 	switch(action.type){
 		case mainpage.TEST:
-          return {...state,...{state[orderSum]:"1"}}
+          return {...state,...{[action.type]:"1"}}
 		default:
         return state;
 	}

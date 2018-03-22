@@ -159,7 +159,7 @@ module.exports={
 	    new webpack.DefinePlugin(env.stringified),
 	    new webpack.HotModuleReplacementPlugin(),
 	    new CaseSensitivePathsPlugin(),
-	    new WatchMissingNodeModulesPlugin(paths.appNodeModules),
+	   // new WatchMissingNodeModulesPlugin(paths.appNodeModules),
 	    new webpack.IgnorePlugin(/^\.\/local$/,/moment$/),
 	],
 	node:{

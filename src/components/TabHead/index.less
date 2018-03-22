@@ -1,0 +1,34 @@
+.wrapper{
+	width:100%;
+	height:70px;
+	background:#fff;
+	display:inline-flex;
+	flex-direction:row;
+	padding-top:18px;
+}
+.mobile-img{
+	width:48px;
+	height:48px;
+}
+.wrapper-left{
+    display:inline-flex;
+	width:200px;
+	display:inline-flex;
+	justify-content:center;
+	align-items:center;
+	& .desc{
+	   margin-left:10px;
+	   display:flex;
+	   flex-direction:column;
+	   & span:first-child{
+	      font-size:20px;
+	      position:relative;topo:-7px;
+	      transform:skew(-15deg);
+	   }
+	}
+	flex-grow:1
+}
+.wrapper-right{
+	width:300px;
+    flex-grow:1
+}
