@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 
 import './index.less';
-import u47 from '../../images/mainpage/u47.png';
+import mobileImg from '../../images/mainpage/mobileImg.jpg';
+import mobileImgFour from '../../images/mainpage/mobileImg4.jpg';
 
 export default class MyComponent extends Component{
 	constructor(props){
@@ -9,18 +10,20 @@ export default class MyComponent extends Component{
 	}
 	componentDidMount(){
 	   const {sourceData}=this.props;
-	   
+	   console.log("innerwidth is "+window.innerHeight);
 	}
 	render(){
 	      return (
              <div className="carouset-wrapper">
                   <ul>
                      <li>
-                         <img src={u47} style={{width:'450px',height:'298px'}}/>
+                         <img src={mobileImg} style={{width:'100%',height:'488px'}}/>
+                     </li>
+                     <li>
+                         <img src={mobileImgFour} style={{width:'100%',height:'488px'}}/>
                      </li>
                   </ul>
              </div>
 	      )
-	   
 	}
 }
