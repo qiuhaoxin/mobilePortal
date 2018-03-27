@@ -24,7 +24,7 @@ export default class MyComponent extends Component{
                <Carouset dataSource={this.imgArr}/>
                <TabText dataSource={this.tabTextArr}/>
                <div>
-
+                   
                </div>
             </div>
 	    )
