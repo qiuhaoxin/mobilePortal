@@ -10,7 +10,7 @@ export default class MyComponent extends Component{
 	}
 	componentDidMount(){
 	   const {sourceData}=this.props;
-	   console.log("innerwidth is "+window.innerHeight);
+	   
 	}
 	render(){
 	      return (
