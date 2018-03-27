@@ -1,6 +1,7 @@
 .carouset-wrapper{
 	width:100%;
 	height:500px;
+	position:relative;
 	& ul{
 	   position:relative;
 
@@ -12,5 +13,17 @@
 	   }
 	   & li:last-child{
 	   }
+	}
+}
+.arrow{
+	position:absolute;
+	top:50%;
+	z-index:22;
+	margin-top:-18px;
+	&.left-arrow{    
+       left:20px;
+	}
+	&.right-arrow{
+       right:20px;
 	}
 }

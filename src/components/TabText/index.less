@@ -1,0 +1,28 @@
+.wise-tabtext{
+	width:80%;
+    display:inline-flex;
+    margin:20px 10%;
+	& li{
+        list-style:none;
+        display:flex;
+        flex-direction:column;
+        .childWidth(4);
+        padding:10px 3%;
+        & span{
+           display:block;
+           text-align:center;
+        }
+
+	}
+	
+}
+.childWidth(@count){
+	width:100% / @count;
+}
+.tableText-title{
+	font-size:20px;
+	padding-bottom:10px;
+}
+.tableText-desc{
+	font-size:15px;
+}
