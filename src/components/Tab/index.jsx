@@ -10,7 +10,13 @@ export default class MyComponent extends Component{
 	   }
 	}
 	componentDidMount(){
-
+	//根据路由初始化indicator
+       const {urlLocation,tabArr}=this.props;
+       const pathname=urlLocation.pathname;
+       const routerItem= tabArr.filter(item=>item.url==pathname)[0];
+       this.setState({
+          linetransformOffset:routerItem['index'] * 100
+       })
 	}
 	handleClick=(e,item)=>{
         const {clickEvent}=this.props;

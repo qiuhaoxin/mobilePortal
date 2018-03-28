@@ -20,11 +20,11 @@ import PropTypes from 'prop-types';
   }
   //tab跳转
   handleTabClick=(item)=>{
-      console.log("item is "+JSON.stringify(item));
       const {tabArr}=this.state;
       this.props.history.push(item.url);
   }
 	render(){
+       const {location}=this.props;
         return (
            <div className={'wrapper'}>
               <div className="wrapper-left">
@@ -38,7 +38,7 @@ import PropTypes from 'prop-types';
               </div>
 
               <div className="wrapper-right">
-                  <Tab tabArr={this.state.tabArr} clickEvent={this.handleTabClick}/>
+                  <Tab tabArr={this.state.tabArr} urlLocation={location} clickEvent={this.handleTabClick}/>
               </div>
            </div>
         )
