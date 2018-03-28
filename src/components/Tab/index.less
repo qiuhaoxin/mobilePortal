@@ -1,5 +1,6 @@
 .tab-wrapper{
-	display:inline-flex;
+	display:flex;
+	flex-direction:column;
 	& ul{
 	   display:inline-flex;
        padding:0;
@@ -11,12 +12,16 @@
 	       list-style:none;
 	       justify-content:center;
 	       align-items:flex-end;
-	       padding-bottom:8px;
+	       padding-bottom:15px;
 	       height:40px;min-width:100px;
 	       &:hover{
 	          color:#2d8cf0
 	       }
 	   }
 
+	}
+	& .wise-line{
+	    -webkit-transition:transform 200ms;
+	    transition:transform 200ms;
 	}
 }

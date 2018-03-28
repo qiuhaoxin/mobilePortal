@@ -11,8 +11,8 @@ import PropTypes from 'prop-types';
 	constructor(props){
 	   super(props);
      this.state={
-        tabArr:[{text:'首页',key:'mainpage',url:'/mainpage'},{text:'部署',key:'deployment',url:'/deployment'},{text:'应用',key:'apply',url:'/apply'},
-        {text:'相关下载',key:'download',url:'/download'},{text:'帮助',key:'help',url:'/help'}]
+        tabArr:[{text:'首页',key:'mainpage',url:'/mainpage',index:0},{text:'部署',key:'deployment',url:'/deployment',index:1},{text:'应用',key:'apply',url:'/apply',index:2},
+        {text:'相关下载',key:'download',url:'/download',index:3},{text:'帮助',key:'help',url:'/help',index:4}]
      }
 	}
   static contextTypes={

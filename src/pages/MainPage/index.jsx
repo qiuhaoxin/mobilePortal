@@ -1,6 +1,18 @@
 import React,{Component} from 'react';
 import Carouset from '../../components/Carouset/index';
 import TabText from '../../components/TabText/index';
+import Line from '../../components/Line/index.jsx';
+
+
+import u21 from '../../images/mainpage/u21.png';
+import u23 from '../../images/mainpage/u23.png';
+import u25 from '../../images/mainpage/u25.png';
+import u27 from '../../images/mainpage/u27.png';
+
+import u36 from '../../images/mainpage/u36.png';
+import u40 from '../../images/mainpage/u40.png';
+
+import './index.less';
 export default class MyComponent extends Component{
 	 constructor(props){
 	    super(props);
@@ -23,9 +35,37 @@ export default class MyComponent extends Component{
             <div className="mainpage-wrapper">
                <Carouset dataSource={this.imgArr}/>
                <TabText dataSource={this.tabTextArr}/>
-               <div>
-                   
+               <div className="wise-example">
+                   <div className="wise-example-title">
+                       <span>样本客户</span>
+                   </div>
+                   <div className="wise-example-desc">
+                        截止目前，已有700+企业选择使用K/3轻应用产品
+                   </div>
+                   <div className="wise-example-img">
+                        <img src={u21}/>
+                        <img src={u23}/>
+                        <img src={u25}/>
+                        <img src={u27}/>
+                   </div>
                </div>
+               <div className="wise-footer">
+                  <div className="wise-footer-ma">
+	                   <div>
+	                       <img src={u36}/>
+	                       <span>微信扫码体验</span>
+	                   </div>
+	                   <div>
+	                       <img src={u40}/>
+	                       <span>扫码看产品介绍</span>
+	                   </div>
+                  </div>
+
+                  <div className="wise-footer-desc">
+                       Copyright 2015 © 金蝶K/3 移动项目组
+                  </div>
+               </div>
+
             </div>
 	    )
 	 }

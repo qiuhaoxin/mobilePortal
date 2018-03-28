@@ -37,6 +37,7 @@
     "babel-runtime": "^6.26.0",
     "case-sensitive-paths-webpack-plugin": "^2.1.2",
     "chalk": "^2.3.2",
+    "classnames": "^2.2.5",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "eslint-config-react-app": "^2.1.0",
