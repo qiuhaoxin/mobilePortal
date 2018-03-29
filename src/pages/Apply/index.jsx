@@ -63,7 +63,7 @@ export default class MyComponent extends Component{
                        除移动BOS定制化轻应用产品外，汇集包含财务、供应链、制造及客户关系管理领域的10+个轻应用产品
                    </div>
               </div>
-              <TabImg dataSource={this.sendTabImgArr} showMask={false}/>
+
           </div>
 	   )
 	}
