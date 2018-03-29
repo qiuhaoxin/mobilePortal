@@ -21,7 +21,31 @@ export default class MyComponent extends Component{
           desc:`\r\n \r\n \r\n \r\n \r\n \r\n \r\n 移动下单帮助企业销售人员快速录入销售订单，并且可以支持库存查看，携带销售价格政策，追踪销售订单
           审批状态，对销售订单进行催办协作。`,starCount:5,func:`\r\n \r\n \r\n \r\n \r\n \r\n \r\n 销售订单录入。库存查询，销售价格携带
           ，商品收藏，催办协作，订单打印`,depend:'销售管理'},
-	  ]
+	  ],
+    this.sendTabImgArr=[
+        {imgPath:require('../../images/product/receive.png'),appName:'应收款管理'},
+        {imgPath:require('../../images/product/approval.png'),appName:'移动审批'},
+        {imgPath:require('../../images/product/alarm.png'),appName:'订单预警'},
+        {imgPath:require('../../images/product/busreport.png'),appName:'经营快报'},
+        {imgPath:require('../../images/product/stock.png'),appName:'库存查询'},
+        {imgPath:require('../../images/product/ordertracking.png'),appName:'订单跟踪'},
+        {imgPath:require('../../images/product/mobiledealer.png'),appName:'移动经销商'},
+        {imgPath:require('../../images/product/reimburse.png'),appName:'移动报销'},
+        {imgPath:require('../../images/product/mofan.png'),appName:'运营魔方'},
+        {imgPath:require('../../images/product/service.png'),appName:'CRM微服务'},
+        {imgPath:require('../../images/product/financialinsight.png'),appName:'资金洞察'},
+        {imgPath:require('../../images/product/dingzhihua.png'),appName:'定制化应用'},
+
+        {imgPath:require('../../images/product/mobileorder.png'),appName:'移动下单'},
+        {imgPath:require('../../images/product/amiba.png'),appName:'阿米巴经营'},
+        {imgPath:require('../../images/product/code.png'),appName:'K/3二维码'},
+        {imgPath:require('../../images/product/smartfactory.png'),appName:'智慧工厂'},
+        {imgPath:require('../../images/product/crm.png'),appName:'移动CRM'},
+        {imgPath:require('../../images/product/ordertracking.png'),appName:'销售价格查询'},
+        {imgPath:require('../../images/product/mobiledealer.png'),appName:'现金流管理'},
+        {imgPath:require('../../images/product/receive.png'),appName:'费用分析'},
+        {imgPath:require('../../images/product/receive.png'),appName:'固定资产管理'}
+    ]
 	}
 	render(){
 	   return (
@@ -30,8 +54,16 @@ export default class MyComponent extends Component{
                    <div className="apply-desc-first h1">截止目前，K/3 移动轻应用已有650000+访问量</div>
                    <div className="apply-desc-second h2">K/3 移动工作台汇集10+轻应用产品，搭载移动BOS平台，提供面向企业定制化轻应用产品生成服务</div>
               </div>
-              <TabImg dataSource={this.tabImgArr}/>
-
+              <TabImg dataSource={this.tabImgArr} showMask={true}/>
+              <div className="apply-pro">
+                   <div className="apply-pro-title">
+                       汇集在K/3 移动工作台的轻应用产品
+                   </div>
+                   <div className="apply-pro-title1">
+                       除移动BOS定制化轻应用产品外，汇集包含财务、供应链、制造及客户关系管理领域的10+个轻应用产品
+                   </div>
+              </div>
+              <TabImg dataSource={this.sendTabImgArr} showMask={false}/>
           </div>
 	   )
 	}

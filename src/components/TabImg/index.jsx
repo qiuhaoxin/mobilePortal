@@ -18,7 +18,7 @@ export default class MyComponent extends Component{
 
   }
 	render(){
-		const {dataSource}=this.props;
+		const {dataSource,showMask}=this.props;
 		return (
            <ul className="tabimg-wrapper">
               {
