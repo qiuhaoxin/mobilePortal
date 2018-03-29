@@ -4,14 +4,16 @@
 	position:relative;
 	& ul{
 	   position:relative;
-
+       height:100%;
+       overflow:hidden;
 	   & li{
-	     width:100%;position:absolute;
+	     width:100%;position:absolute;list-style:none;
 	   }
 	   & li:first-child{
-	       
+	       left:0;top:0;
 	   }
 	   & li:last-child{
+	      left:100%;top:0;
 	   }
 	}
 }

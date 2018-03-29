@@ -1,12 +1,14 @@
 import React,{Component} from 'react';
 import './index.less';
 import Line from '../Line/index.jsx';
+import ClassNames from 'classnames';
 
 export default class MyComponent extends Component{
 	constructor(props){
 	   super(props)
 	   this.state={
-          linetransformOffset:0
+          linetransformOffset:0,
+          tabArr:[]
 	   }
 	}
 	componentDidMount(){
@@ -15,25 +17,35 @@ export default class MyComponent extends Component{
        const pathname=urlLocation.pathname;
        const routerItem= tabArr.filter(item=>item.url==pathname)[0];
        this.setState({
-          linetransformOffset:routerItem['index'] * 100
+          linetransformOffset:routerItem['index'] * 100,
+          tabArr
        })
 	}
 	handleClick=(e,item)=>{
         const {clickEvent}=this.props;
+        const {tabArr}=this.state;
         if(clickEvent)clickEvent(item);
+        tabArr.forEach(itemData=>{
+            if(item.index==itemData.index){
+               itemData['activeElement']=true;
+            }else{
+               itemData['activeElement']=false;
+            }
+        })
         this.setState({
            linetransformOffset:item.index * 100
         })
 	}
 	render(){
-	   const {tabArr,clickEvent}=this.props;
+	   const {clickEvent}=this.props;
+	   const {tabArr}=this.state;
        return (
 		   <div className='tab-wrapper'>
 	           <ul>
 	               {
 	                  tabArr.map((item,index)=>{
 	                     return (
-	                        <li key={'tab-list'+index} onClick={(e)=>this.handleClick(e,item)}>
+	                        <li key={'tab-list'+index} className={item.activeElement?'active':'noactive'} onClick={(e)=>this.handleClick(e,item)}>
 	                            <div>{item.text}</div>
 	                        </li>
 	                     )

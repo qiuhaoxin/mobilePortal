@@ -39,15 +39,9 @@ export default class MyComponent extends Component{
                 <img src={imgTextObj.imgPath}/>
                 <span>{imgTextObj.appName}</span>
               </div>
+
            </div>
-           <div className="imgtext-item-mask">
-              <div className="mask-title">{item.appName}</div>
-              <div className="mask-start"></div>
-              <div className="mask-desc">{item.desc}</div>
-              <div>主要功能:</div>
-              <div className="mask-func">{item.func}</div>
-              <div><span></span><span>{item.depend}</span></div>
-           </div>
+
 	   )
 	}
 }
