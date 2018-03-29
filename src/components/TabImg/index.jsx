@@ -1,15 +1,29 @@
 import React,{Component} from 'react';
 import './index.less';
 import ClassName from 'classnames';
+import ImgText from '../ImgText/index.jsx';
+import ClassNames from 'classnames';
 
 
 export default class MyComponent extends Component{
 	constructor(props){
 		super(props);
-	}
-  componentDidMound(){
-     const {borderd}=this.props;
 
+	}
+  state={
+     classNameStr:''
+  }
+  componentDidMount(){
+     const {dataSource,...paramsStyle}=this.props;
+     const params=paramsStyle['paramsStyle'];
+     const nextClass=params['nextClass'];
+     const className=ClassNames({
+        [`${nextClass}`]:nextClass
+     },`tabimg-wrapper`);
+     console.log("className str is "+className);
+     this.setState({
+        classNameStr:className
+     })
   }
   handleMouseOver=(e)=>{
      
@@ -18,23 +32,17 @@ export default class MyComponent extends Component{
 
   }
 	render(){
-		const {dataSource,showMask}=this.props;
+		const {dataSource,...paramsStyle}=this.props;
+    const params=paramsStyle['paramsStyle'];
+
+    console.log("parattms is "+JSON.stringify(paramsStyle));
 		return (
-           <ul className="tabimg-wrapper">
+           <ul className={this.state.classNameStr} style={params['styleStr']}>
               {
               	dataSource.map((item,index)=>{
               		return (
-                        <li key={`tabimg-${index}`} className={"tabimg-item item-"+index} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}>
-                            <img src={item['imgPath']}/>
-                            <div className="tabimg-item-title">{item.appName}</div>
-                            <div className="tabimg-item-mask">
-                                  <div className="mask-title">{item.appName}</div>
-                                  <div className="mask-start"></div>
-                                  <div className="mask-desc">{item.desc}</div>
-                                  <div>主要功能:</div>
-                                  <div className="mask-func">{item.func}</div>
-                                  <div><span></span><span>{item.depend}</span></div>
-                            </div>
+                        <li key={`tabimg-${index}`}  onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}>
+                             <ImgText data={item} pars={paramsStyle}/>    
                         </li>
               		)
               	})
