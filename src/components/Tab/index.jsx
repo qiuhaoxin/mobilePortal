@@ -14,13 +14,28 @@ export default class MyComponent extends Component{
 	componentDidMount(){
 	//根据路由初始化indicator
        const {urlLocation,tabArr}=this.props;
-       const pathname=urlLocation.pathname;
-       const routerItem= tabArr.filter(item=>item.url==pathname)[0];
-       this.setState({
-          linetransformOffset:routerItem['index'] * 100,
-          tabArr
-       })
+       let pathname=urlLocation.pathname;
+       let routerItem= tabArr.filter(item=>item.url==pathname);
+       if(routerItem){
+          routerItem=routerItem[0];
+       }
+       tabArr.forEach(itemData=>{
+            if(routerItem.index==itemData.index){
+               itemData['activeElement']=true;
+            }else{
+               itemData['activeElement']=false;
+            }
+        })
+       if(routerItem){
+	       this.setState({
+	          linetransformOffset:routerItem['index'] * 100,
+	          tabArr
+	       })
+       }
 	}
+	componentWillReceiveProps(nextProps){
+        console.log("nextProps is "+JSON.stringify(nextProps));
+    }
 	handleClick=(e,item)=>{
         const {clickEvent}=this.props;
         const {tabArr}=this.state;

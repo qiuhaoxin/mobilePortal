@@ -21,13 +21,23 @@ import PropTypes from 'prop-types';
   static contextTypes={
      router:PropTypes.object
   }
+  componentWillMount(){
+     const {location}=this.props;
+      //console.log("location is "+JSON.stringify(location));
+       if(location.pathname=="/"){
+          this.props.history.push('/mainpage');
+       }
+  }
   //tab跳转
   handleTabClick=(item)=>{
       const {tabArr}=this.state;
       this.props.history.push(item.url);
   }
 	render(){
-       const {location}=this.props;
+       let {location}=this.props;
+       if(location['pathname']=='/'){
+           location['pathname']="/mainpage";
+       }
         return (
            <div className={'wrapper'}>
               <div className="wrapper-left">

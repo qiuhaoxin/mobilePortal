@@ -17,6 +17,7 @@ export default class MyComponent extends Component{
 		offsetX:0,
 		curIndex:-1,
 	}
+  timerout=null;
 	componentDidMount(){
 	   const {sourceData}=this.props;
 	   this.startTimer();
@@ -29,10 +30,11 @@ export default class MyComponent extends Component{
 	}
 	startTimer=()=>{
 		const _this=this;
+    console.log("style is "+this.refs.carouset1.style['transform']);
        timer=setTimeout(function(){
           _this.setState(preState=>({
-          	offsetX:preState.curIndex * screenWidth,
-          	curIndex:preState.curIndex + 1
+          	offsetX:-1 * screenWidth,
+          	//curIndex:preState.curIndex + 1
           })
              
           )
@@ -45,8 +47,17 @@ export default class MyComponent extends Component{
        }
 	}
 	setTransitionEnd=()=>{
-
+     if(this.timerout){
+         clearTimeout(this.timerout);
+         this.timerout=null;
+     }
+     this.timerout=setTimeout(function(){
+        this.transitionEnd();
+     },400)
 	}
+  transitionEnd=()=>{
+
+  }
 	render(){
 	      const {dataSource}=this.props;
 	      return (
@@ -60,7 +71,7 @@ export default class MyComponent extends Component{
                         styles['transform']=tranlateStr;
                         styles['transition']="transform .4s ease-out";
                         console.log("styles is "+JSON.stringify(styles)+" and "+this.state.offsetX);
-                     	return (<li key={'carouset-'+index} style={styles}>
+                     	return (<li key={'carouset-'+index} style={styles} ref={'carouset'+index}>
                      	<img style={{width:'100%',height:'488px'}} src={item.url}/></li>
                      	)
                     })
