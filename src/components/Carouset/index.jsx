@@ -7,29 +7,63 @@ import mobileImgFour from '../../images/mainpage/mobileImg4.jpg';
 import leftArrow from '../../images/mainpage/left_arrow.png';
 import rightArrow from '../../images/mainpage/right_arrow.png';
 
+const screenWidth=window.innerWidth;
+let timer=null;
 export default class MyComponent extends Component{
 	constructor(props){
 	  super(props);
 	}
+	state={
+		offsetX:0,
+		curIndex:-1,
+	}
 	componentDidMount(){
 	   const {sourceData}=this.props;
-	   
+	   this.startTimer();
 	}
 	componentWillUnmount(){
-
+        this.clearTimer();
 	}
 	componentWillReceiveProps(nextProps){
       
 	}
+	startTimer=()=>{
+		const _this=this;
+       timer=setTimeout(function(){
+          _this.setState(preState=>({
+          	offsetX:preState.curIndex * screenWidth,
+          	curIndex:preState.curIndex + 1
+          })
+             
+          )
+       },4000);
+	}
+	clearTimer=()=>{
+       if(timer!=null){
+       	  clearTimeout(timer);
+       	  timer=null;
+       }
+	}
+	setTransitionEnd=()=>{
+
+	}
 	render(){
 	      const {dataSource}=this.props;
-	      console.log("dataSource is "+JSON.stringify(dataSource));
 	      return (
              <div className="carouset-wrapper">
                   <img src={leftArrow} className='arrow left-arrow'/>
                   <ul>
                   {
-                     dataSource.map((item,index) => <li key={'carouset-'+index}><img style={{width:'100%',height:'488px'}} src={item.url}/></li>)
+                     dataSource.map((item,index) => {
+                     	let styles={};
+                        const tranlateStr="translate3d("+(index * screenWidth + this.state.offsetX)+"px,0,0)";
+                        styles['transform']=tranlateStr;
+                        styles['transition']="transform .4s ease-out";
+                        console.log("styles is "+JSON.stringify(styles)+" and "+this.state.offsetX);
+                     	return (<li key={'carouset-'+index} style={styles}>
+                     	<img style={{width:'100%',height:'488px'}} src={item.url}/></li>
+                     	)
+                    })
                   }
                   </ul>
                   <img src={rightArrow} className="arrow right-arrow"/>
