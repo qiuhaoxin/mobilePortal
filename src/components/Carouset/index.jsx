@@ -19,7 +19,7 @@ export default class MyComponent extends Component{
 
 	}
 	componentWillReceiveProps(nextProps){
-
+      
 	}
 	render(){
 	      const {dataSource}=this.props;
@@ -28,6 +28,18 @@ export default class MyComponent extends Component{
              <div className="carouset-wrapper">
                   <img src={leftArrow} className='arrow left-arrow'/>
                   <ul>
+                  {
+                     dataSource.map((item,index) => <li key={'carouset-'+index}><img style={{width:'100%',height:'488px'}} src={item.url}/></li>)
+                  }
+                  </ul>
+                  <img src={rightArrow} className="arrow right-arrow"/>
+             </div>
+	      )
+	}
+}
+
+/*
+                  <ul>
                      <li>
                          <img src={mobileImg} style={{width:'100%',height:'488px'}}/>
                      </li>
@@ -35,8 +47,4 @@ export default class MyComponent extends Component{
                          <img src={mobileImgFour} style={{width:'100%',height:'488px'}}/>
                      </li>
                   </ul>
-                  <img src={rightArrow} className="arrow right-arrow"/>
-             </div>
-	      )
-	}
-}
+*/

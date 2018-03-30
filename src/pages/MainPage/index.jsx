@@ -17,8 +17,8 @@ export default class MyComponent extends Component{
 	 constructor(props){
 	    super(props);
 	    this.imgArr=[
-           {url:'../../images/mainpage/mobileImg.jpg',imgIndex:1},
-           {url:'../../images/mainpage/mobileImg4.jpg',imgIndex:2}
+           {url:require('../../images/mainpage/mobileImg.jpg'),imgIndex:1},
+           {url:require('../../images/mainpage/mobileImg4.jpg'),imgIndex:2}
 	    ]
 	    this.tabTextArr=[
             {title:'多账套切换',desc:'支持多账套切换配置，支持多账套数据展示，业务处理',icon:''},
