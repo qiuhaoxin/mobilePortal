@@ -15,7 +15,7 @@ export default class MyComponent extends Component{
 	}
 	state={
 		offsetX:0,
-		curIndex:-1,
+		curIndex:1,
 	}
   timerout=null;
 	componentDidMount(){
@@ -31,32 +31,40 @@ export default class MyComponent extends Component{
 	startTimer=()=>{
 		const _this=this;
     console.log("style is "+this.refs.carouset1.style['transform']);
-       timer=setTimeout(function(){
+    timer=setInterval(function(){
           _this.setState(preState=>({
-          	offsetX:-1 * screenWidth,
-          	//curIndex:preState.curIndex + 1
-          })
-             
+          	offsetX:-preState.curIndex * screenWidth,
+          	curIndex:preState.curIndex + 1
+          }) 
           )
-       },4000);
+        _this.setTransitionEnd();  
+    },23000);
 	}
 	clearTimer=()=>{
        if(timer!=null){
-       	  clearTimeout(timer);
+       	  clearInterval(timer);
        	  timer=null;
        }
 	}
 	setTransitionEnd=()=>{
+     const _this=this;
      if(this.timerout){
          clearTimeout(this.timerout);
          this.timerout=null;
      }
      this.timerout=setTimeout(function(){
-        this.transitionEnd();
+        _this.transitionEnd();
      },400)
 	}
   transitionEnd=()=>{
-
+    const {dataSource}=this.props;
+    if(this.state.curIndex==dataSource.length){
+       console.log("stylesdfds is "+this.refs.carouset1.style['transform']);
+       this.refs.carouset0.style['transform']="translate3d("+(screenWidth)+"px,0,0)";
+       this.setState({
+          curIndex:1
+       })
+    }
   }
 	render(){
 	      const {dataSource}=this.props;
