@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import './index.less';
-import {Carouset,TabTest} from 'wise_webcomponents';
+import {Tab,Carouset} from 'wise_webcomponents';
 
  export default class MyComponent extends Component{
      constructor(props){
@@ -20,7 +20,7 @@ import {Carouset,TabTest} from 'wise_webcomponents';
         return (
            <div className="container">
                <Carouset dataSource={this.imgArr}></Carouset>
-                <TabTest tabArr={this.tabArr}/>
+                <Tab tabArr={this.tabArr}/>
            </div>
         )
      }

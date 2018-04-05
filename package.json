@@ -24,7 +24,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0",
-    "wise_webcomponents": "^1.5.2"
+    "wise_webcomponents": "^1.5.8"
   },
   "devDependencies": {
     "autoprefixer": "^8.1.0",
