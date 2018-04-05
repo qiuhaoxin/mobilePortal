@@ -20,7 +20,6 @@ export default class MyConponent extends Component{
 
   //点击下载先填写信息
   handleDownloadMobile=()=>{
-      console.log("hei");
       this.setState({
          showModal:true
       })

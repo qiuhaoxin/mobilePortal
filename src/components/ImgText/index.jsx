@@ -38,6 +38,9 @@ export default class MyComponent extends Component{
               <div className="imgtext-show">
                 <img src={imgTextObj.imgPath}/>
                 <span>{imgTextObj.appName}</span>
+                {
+                  imgTextObj.render ? imgTextObj.render() : ''
+                }
               </div>
 
            </div>

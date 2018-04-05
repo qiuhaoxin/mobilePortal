@@ -3,8 +3,9 @@ import './index.less'
 import PropTypes from 'prop-types';
 import addEventListener from 'rc-util/lib/Dom/addEventListener';
 import Dialog from 'rc-dialog';
-
+import classNames from 'classnames';
 let mousePosition={x:0,y:0};
+let classNameStr;
 export default class MyComponent extends Component{
 	constructor(props){
 	   super(props)
@@ -18,9 +19,19 @@ export default class MyComponent extends Component{
           console.log("mousePosition is "+JSON.stringify(mousePosition));
           setTimeout(()=>mousePosition=null,100)
        })
+       const {visible}=this.props;
+       classNameStr=classNames({
+          [`modal-show`]:!!visible
+       },'modal-wrapper')
+
 	}
 	componentWillReceiveProps(nextProps){
-
+      console.log("nextProps is "+JSON.stringify(nextProps));
+      if(nextProps.visible!=this.props['visible']){
+        classNameStr=classNames({
+            [`modal-show`]:nextProps.visible
+         },'modal-wrapper')
+      }
 	}
 	static propTypes={
 	   title:PropTypes.string,
@@ -29,7 +40,7 @@ export default class MyComponent extends Component{
 	render(){
 	   const {visible,title}=this.props;
 	   return (
-	   <div className="modal-wrapper" style={{}}>
+	   <div className={classNameStr} style={{}}>
           <div className="modal">
              <div className="modal-title">
                 {title}

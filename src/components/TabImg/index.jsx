@@ -33,6 +33,7 @@ export default class MyComponent extends Component{
   }
 	render(){
 		const {dataSource,...paramsStyle}=this.props;
+    console.log("dataSource is "+JSON.stringify(dataSource))
     const params=paramsStyle['paramsStyle'];
 
     console.log("parattms is "+JSON.stringify(paramsStyle));
