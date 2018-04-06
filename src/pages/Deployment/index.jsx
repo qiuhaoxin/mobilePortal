@@ -38,7 +38,6 @@ export default class MyConponent extends Component{
                      <span className="deploy-dl">下载云之家</span>
                      <span className="dot">中国最大的移动工作平台，海尔、万科、国务院国资委等300万企业和组织的选择</span>
                      <span className="dot">支持IOS、安卓、PCWeb端和桌面端</span>
-                     <button onClick={this.handleDownloadYZJ}>下载云之家</button>
                   </div>
               </div>
               <div className="deploy-wrapper-h5">
@@ -48,7 +47,6 @@ export default class MyConponent extends Component{
                      <span className="dot">Windows Server 2008 R2（推荐）</span>
                      <span className="dot">13.1版本需要安装在K3客户端或K3WEB或中间层服务器</span>
                      <span className="dot">14.0及以上版本需要安装在K3WEB或中间层服务器</span>
-                     <div><button onClick={this.handleDownloadMobile}>13.1版本下载</button><button onClick={this.handleDownloadMobile}>14.0及以上版本下载</button></div>
                   </div>
                   <img src={u169}/>
               </div>
@@ -59,8 +57,6 @@ export default class MyConponent extends Component{
                      <span className="deploy-dl">安装对应K/3版本特性补丁</span>
                      <span className="dot">每个版本都有对应的特性补丁需要安装</span>
                      <span className="dot">补丁持续更新，安装最新补丁前需要先卸载历史补丁</span>
-                     <div><button>13.1补丁下载</button><button>14.0补丁下载</button></div>
-                     <div><button>14.2补丁下载</button><button>14.3补丁下载</button></div>
                   </div>
 
               </div>
@@ -89,10 +85,6 @@ export default class MyConponent extends Component{
                    <div>恭喜你！完成所有部署，畅享移动办公！</div>
                    <a>点击查看详细部署文档</a>
               </div>
-             <Modal title="请填写客户信息" visible={this.state.showModal}>
-
-             </Modal>
-
           </div>
 	   )
 	}

@@ -20,7 +20,6 @@ import {Tab,Carouset} from 'wise_webcomponents';
         return (
            <div className="container">
                <Carouset dataSource={this.imgArr}></Carouset>
-                <Tab tabArr={this.tabArr}/>
            </div>
         )
      }
