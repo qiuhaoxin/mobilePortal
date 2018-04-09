@@ -88,7 +88,7 @@ class MyComponent extends Component{
           type:'客户',
           tel:'',
           concat:'',
-          goverment:''
+          goverment:'',
       }
       renderDownload=(key)=>{
           const content=this.dlContent[key];
@@ -110,7 +110,8 @@ class MyComponent extends Component{
       handleDownloadClick=(data)=>{
           console.log("data is "+data);
           this.setState({
-             modalVisible:true
+             modalVisible:true,
+             maskerVisible:true
           })
       }
 
@@ -127,15 +128,19 @@ class MyComponent extends Component{
          e.target.style['background']="rgb(0,153,255)";
       }
       handleBtnOk=()=>{
-        console.log("ok");
+        const {provinceVal,cityVal,type,tel,concat,goverment}=this.state;
+        console.log("provinceVal is "+provinceVal+" and cityVal is "+cityVal+" and type is "+type+" and tel is "+tel+" and concat is "+concat+"and ");
+        
         this.setState({
-          modalVisible:false
+          modalVisible:false,
+          maskerVisible:false
         })
       }
       handleCancel=()=>{
         console.log("cancel");
           this.setState({
-            modalVisible:false
+            modalVisible:false,
+            maskerVisible:false
           })
       }
       handleSelect=(value,key)=>{
@@ -161,7 +166,7 @@ class MyComponent extends Component{
         })
       }
      render(){
-        const {modalVisible,provinceVal,cityVal,type,tel,concat,goverment}=this.state;
+        const {modalVisible,provinceVal,cityVal,type,tel,concat,goverment,maskerVisible}=this.state;
         return (
            <div className="dl-container">
                <img src={dlImg}/>
@@ -178,7 +183,7 @@ class MyComponent extends Component{
                   <ImgText dataSource={this.imgTabArr10} layout="row" className='video-imgtext'/>
                   <ImgText dataSource={this.imgTabArr11} layout="row" className='video-imgtext'/>
               </div>
-              <Masker />
+              <Masker visible={maskerVisible}/>
               <Modal
                   title="请填写用户信息"
                   onOk={this.handleBtnOk}

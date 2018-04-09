@@ -1,0 +1,3 @@
+export const SUBMIT_DATA="SUBMIT_DATA";
+
+export const GET_DOWNLOAD_DATA="GET_DOWNLOAD_DATA";
