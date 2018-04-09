@@ -1,22 +1,35 @@
 import React,{Component} from 'react';
 import './index.less';
 import dlImg from '../../images/download/dl_img.png';
-import {ImgText} from 'wise_webcomponents';
-import download from '../../images/download/download.png'
+import {ImgText,Exchange,Modal,Select,Masker} from 'wise_webcomponents';
+import download from '../../images/download/download.png';
+import {connect} from 'react-redux';
+import {getProvince,getCity} from '../../data/province.js';
 
-export default class MyComponent extends Component{
+
+class MyComponent extends Component{
      constructor(props){
         super(props);
-
+        this.exchangeData=[
+          ['13.1','14.0'],
+          ['14.2','14.3']
+        ];
+        this.provinceData=getProvince();
+        this.govermentData=['客户','伙伴代理','分公司机构'];
+        this.cityData=getCity('广东');
+        this.erpData=[
+           ['K/3WISE13.1版本'],
+           ['K/3WISE14.0以上版本']
+        ]
         this.imgTabArr=[
                {imgPath:require('../../images/download/package.png'),title:'云之家',desc:'最新版本:V9',
-               render:()=><div><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout} onClick={this.handleDownloadClick}><img src={download}/>立即下载</span></div></div>},
+               render:()=><Exchange dataSource={[]} downloadEvent={this.handleDownloadClick} imgPath={require('../../images/download/download.png')}/>},
 
                {imgPath:require('../../images/download/package.png'),title:'移动云管理平台',desc:'最新版本：V14.3.11.0',
-               render:()=><div><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}><img src={download}/>立即下载</span> </div></div>},
+                render:()=><Exchange dataSource={this.erpData} downloadEvent={this.handleDownloadClick} imgPath={require('../../images/download/download.png')}/>},
 
                {imgPath:require('../../images/download/package.png'),title:'K/3WISE补丁',desc:'持续更新',
-               render:()=><div><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}><img src={download}/>立即下载</span></div>{this.renderDownload('patch')}</div>},
+                render:()=><Exchange dataSource={this.exchangeData} downloadEvent={this.handleDownloadClick} imgPath={require('../../images/download/download.png')}/>},
         ];
         this.imgTabArr7=[
                {imgPath:require('../../images/download/dl_print.png'),title:'移动报销打印服务助手（免安装）',desc:'云之家移动报销中打印单据需要使用打印助手',
@@ -67,7 +80,15 @@ export default class MyComponent extends Component{
 
       }
       state={
-         showDownload:false
+         modalVisible:false,
+          dropDownVisible:false,
+          maskerVisible:false,
+          provinceVal:'广东省',
+          cityVal:'广州市',
+          type:'客户',
+          tel:'',
+          concat:'',
+          goverment:''
       }
       renderDownload=(key)=>{
           const content=this.dlContent[key];
@@ -86,11 +107,13 @@ export default class MyComponent extends Component{
              </div>
           )
       }
-      handleDownloadClick=(e)=>{
-         this.setState({
-            showDownload:true
-         })
+      handleDownloadClick=(data)=>{
+          console.log("data is "+data);
+          this.setState({
+             modalVisible:true
+          })
       }
+
       handleMouseOver2=(target)=>{
         target.style['box-shadow']="3px 3px 3px 0px rgba(0,0,0,.4)";
       }
@@ -103,7 +126,42 @@ export default class MyComponent extends Component{
       handleDownloadMouseout=(e)=>{
          e.target.style['background']="rgb(0,153,255)";
       }
+      handleBtnOk=()=>{
+        console.log("ok");
+        this.setState({
+          modalVisible:false
+        })
+      }
+      handleCancel=()=>{
+        console.log("cancel");
+          this.setState({
+            modalVisible:false
+          })
+      }
+      handleSelect=(value,key)=>{
+        if(key=='provinceVal'){
+            this.cityData=getCity(value);
+        }
+         this.setState((preState)=>{
+            if(key=='provinceVal'){
+              return ({
+                [key]:value,
+                cityVal:this.cityData[0]
+              })
+            }else{
+              return ({
+                [key]:value
+              })
+            }
+         })
+      }
+      handleInput=(e,key)=>{
+        this.setState({
+           [key]:e.target.value
+        })
+      }
      render(){
+        const {modalVisible,provinceVal,cityVal,type,tel,concat,goverment}=this.state;
         return (
            <div className="dl-container">
                <img src={dlImg}/>
@@ -120,7 +178,41 @@ export default class MyComponent extends Component{
                   <ImgText dataSource={this.imgTabArr10} layout="row" className='video-imgtext'/>
                   <ImgText dataSource={this.imgTabArr11} layout="row" className='video-imgtext'/>
               </div>
+              <Masker />
+              <Modal
+                  title="请填写用户信息"
+                  onOk={this.handleBtnOk}
+                  visible={modalVisible}
+                  onCancel={this.handleCancel}
+              >
+                  <div>
+                     <div className="modal-row">
+                       <div className="modal-row-item"><label>用户类型:</label>
+                       <Select value={type} defaultValue={type} dataSource={this.govermentData} onChange={(value)=>this.handleSelect(value,"type")}></Select>  
+                       </div>           
+                       <div className="modal-row-item"><label>机构名称:</label><input placeholder="请输入机构名称" value={goverment} onChange={(e)=>this.handleInput(e,"goverment")}/></div>
+                     </div>
+                     <div className="modal-row">
+                       <div className="modal-row-item"><label>省    份:</label>
+                       <Select value={provinceVal} onChange={(value)=>this.handleSelect(value,"provinceVal")} defaultValue={provinceVal} 
+                       dataSource={this.provinceData}></Select></div>           
+                       <div className="modal-row-item"><label>市:</label>
+                       <Select value={cityVal} defaultValue={cityVal} dataSource={this.cityData} onChange={(value)=>this.handleSelect(value,"cityVal")}></Select>
+                       </div>
+                     </div>
+                     <div className="modal-row">
+                       <div className="modal-row-item"><label>联系人:</label>
+                       <input placeholder="请填写联系人姓名" value={concat} onChange={(e)=>this.handleInput(e,"concat")}/></div>           
+                       <div className="modal-row-item"><label>电话:</label><input placeholder="请输入电话号码" value={tel} onChange={(e)=>this.handleInput(e,"tel")}/></div>
+                     </div>
+                  </div>
+              </Modal>
            </div>
         )
      }
  }
+
+ //export default MyComponent;
+ export default connect(state=>({
+
+ }),{})(MyComponent);

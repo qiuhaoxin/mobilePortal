@@ -16,7 +16,7 @@ const render=Component=>{
 	ReactDom.render(
       <Provider store={store}>
           <AppContainer>
-               <Component/>
+               <Component />
           </AppContainer>
       </Provider>,
       document.getElementById('root')

@@ -1,4 +1,4 @@
-
+@import '../../style/theme/default.less';
 .tabimg-wrapper-dl{
 	background:#eee;
 }
@@ -7,11 +7,15 @@
 .qhx-imgtext{
     width:70%;
     margin:50px auto;
-	& ul{
-	  & li{
+	& > ul{
+	  & > li{
 	     width:200px;
 	     margin:0 20px;
-	     padding:27px 25px;
+	     padding:27px 18px;
+	     position:relative;
+	     & .qhx-exchange{
+	        margin:0;
+	     }
 	  }
 	}
 	&-text{
@@ -33,13 +37,42 @@
     width:100%;
     margin-top:0 !important;
     background:rgb(242,242,242);
-    & ul{
-       width:60% !important;
-       margin:50px auto;
-       & li{
-         background:#fff;
-         width:140px;
-         border-radius:8px;margin:0  20px;
+    & > ul{
+       @media screen{
+          @media (min-width:@screen-lg){
+		       width:96% !important;
+		       margin:50px auto;
+		       & li.qhx-imgtext-column{
+		         background:#fff;
+		         width:140px;
+		         border-radius:8px;margin:0  20px;
+                 padding:27px 10px;
+		         & .qhx-imgtext-text-title{
+		            font-size:22px;
+		         }
+		         & .qhx-imgtext-text-desc{
+                    font-size:16px;
+		         }
+		       }
+          }
+          @media (min-width:@screen-xl){
+              width:80% !important;
+		       margin:50px auto;
+		       & li.qhx-imgtext-column{
+		         background:#fff;
+		         width:140px;
+		         border-radius:8px;margin:0  20px;
+		       }
+          }
+          @media (min-width:@screen-xxl){
+              width:65% !important;
+		       margin:50px auto;
+		       & li.qhx-imgtext-column{
+		         background:#fff;
+		         width:140px;
+		         border-radius:8px;margin:0  20px;
+		       }
+          }
        }
     }
     & .download_btn{
@@ -182,10 +215,29 @@
 .download_module{
 	& > div{
        &:first-child{
-
-             font-size:23px;
-       margin-top:40px;
-       margin-left:15%;
+	       font-size:23px;
+	       margin-top:40px;
+	       margin-left:15%;
        }
 	}
 }
+
+.qhx-modal{
+	background:#fff;top:18%;
+	.modal-row{
+	display:inline-flex;width:100%;justify-content:flex-start;;margin-left:20px;
+    & > div{
+       width:50%;
+       display:inline-flex;margin-top:20px;align-items:center;justify-content:flex-start;
+       padding-left:20px;
+       & label{
+          width:80px;display:flex;justify-content:flex-end;padding-right:5px;
+       }
+       
+    }
+    & input{
+       height:30px;border:1px solid #eee;border-radius:6px;padding-left:8px;margin-left:5px;
+    }
+}
+}
+
