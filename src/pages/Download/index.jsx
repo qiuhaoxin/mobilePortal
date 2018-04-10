@@ -133,6 +133,10 @@ class MyComponent extends Component{
       handleDownloadMouseout=(e)=>{
          e.target.style['background']="rgb(0,153,255)";
       }
+      submitData=async (params)=>{
+          const response=await API.submitData(params);
+          console.log("response is "+JSON.stringify(response));
+      }
       handleBtnOk=()=>{
         const {provinceVal,cityVal,type,tel,concat,goverment}=this.state;
         const {submitData}=this.props;
@@ -149,9 +153,8 @@ class MyComponent extends Component{
            tel,
            version:'14.1'
         }
-        const response= API.submitData(info);
-        console.log();
-        console.log("response is "+JSON.stringify(response));
+        //const response= API.submitData(info);
+        this.submitData(info);
        // this.setState({
          // modalVisible:false,
           //maskerVisible:false

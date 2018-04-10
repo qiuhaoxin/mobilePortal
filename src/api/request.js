@@ -29,7 +29,7 @@ export default class Request{
                resolve(typeof res.data==='object' ? res.data : JSON.parse(res.data))
 			},error=>{
 				if(error.response){
-					rejecte(error.response.data);
+					reject(error.response.data);
 				}else{
 					reject(error)
 				}
