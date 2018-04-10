@@ -110,8 +110,8 @@ class MyComponent extends Component{
       }
       handleDownloadClick=(data)=>{
           const {custInfoData,submitData}=this.props;
-          console.log("custInfoData is "+custInfoData+" and submitData is "+submitData);
-          if(custInfoData){
+          console.log("custInfoData is "+JSON.stringify(custInfoData)+" and submitData is "+submitData);
+          if(custInfoData && custInfoData['tel']!=''){
 
           }else{
             this.setState({
@@ -133,15 +133,16 @@ class MyComponent extends Component{
       handleDownloadMouseout=(e)=>{
          e.target.style['background']="rgb(0,153,255)";
       }
-      submitData=async (params)=>{
+      submitDataAsync=async (params)=>{
+          const {submitData}=this.props;
           const response=await API.submitData(params);
-          console.log("response is "+JSON.stringify(response));
+          console.log("reponse is "+JSON.stringify(response));
+          submitData((response && response.Data && response.Data[0]));
+
       }
       handleBtnOk=()=>{
         const {provinceVal,cityVal,type,tel,concat,goverment}=this.state;
         const {submitData}=this.props;
-        console.log("provinceVal is "+provinceVal+" and cityVal is "+cityVal+" and type is "+type+" and tel is "+tel+" and concat is "+concat+"and ");
-        //let info={InFo:JSON.stringify({provinceVal,cityVal,type,tel,concat,goverment})}
         let info={
            province:provinceVal,
            city:cityVal,
@@ -153,8 +154,7 @@ class MyComponent extends Component{
            tel,
            version:'14.1'
         }
-        //const response= API.submitData(info);
-        this.submitData(info);
+        this.submitDataAsync(info);
        // this.setState({
          // modalVisible:false,
           //maskerVisible:false

@@ -5,9 +5,8 @@ class API extends Request{
 	async submitData(params={}){
         console.log("params is "+JSON.stringify(params));
         try{
-           let response=this.axios('POST','/Data/Handler1.ashx?ActionType=insertCustomer',params);
-           console.log("response is "+JSON.stringify(response));
-           if(response && response.status===1){
+           let response=await this.axios('POST','/Data/Handler1.ashx?ActionType=insertCustomer',params);
+           if(response && response.Result===1){
               return response;
            }else{
            	  let err={

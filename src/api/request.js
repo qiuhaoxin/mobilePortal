@@ -25,7 +25,7 @@ export default class Request{
 			}
 			axios.request(_options)
 			.then(res=>{
-				console.log("res is "+JSON.stringify(res));
+				//console.log("res is "+JSON.stringify(res));
                resolve(typeof res.data==='object' ? res.data : JSON.parse(res.data))
 			},error=>{
 				if(error.response){
