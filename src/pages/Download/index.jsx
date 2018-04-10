@@ -5,7 +5,8 @@ import {ImgText,Exchange,Modal,Select,Masker} from 'wise_webcomponents';
 import download from '../../images/download/download.png';
 import {connect} from 'react-redux';
 import {getProvince,getCity} from '../../data/province.js';
-
+import {submitData} from '../../store/download/action';
+import API from '../../api/api';
 
 class MyComponent extends Component{
      constructor(props){
@@ -108,11 +109,16 @@ class MyComponent extends Component{
           )
       }
       handleDownloadClick=(data)=>{
-          console.log("data is "+data);
-          this.setState({
-             modalVisible:true,
-             maskerVisible:true
-          })
+          const {custInfoData,submitData}=this.props;
+          console.log("custInfoData is "+custInfoData+" and submitData is "+submitData);
+          if(custInfoData){
+
+          }else{
+            this.setState({
+               modalVisible:true,
+               maskerVisible:true
+            })
+          }
       }
 
       handleMouseOver2=(target)=>{
@@ -129,12 +135,27 @@ class MyComponent extends Component{
       }
       handleBtnOk=()=>{
         const {provinceVal,cityVal,type,tel,concat,goverment}=this.state;
+        const {submitData}=this.props;
         console.log("provinceVal is "+provinceVal+" and cityVal is "+cityVal+" and type is "+type+" and tel is "+tel+" and concat is "+concat+"and ");
-        
-        this.setState({
-          modalVisible:false,
-          maskerVisible:false
-        })
+        //let info={InFo:JSON.stringify({provinceVal,cityVal,type,tel,concat,goverment})}
+        let info={
+           province:provinceVal,
+           city:cityVal,
+           email:'',
+           linkman:concat,
+           name:goverment,
+           product:'14.2',
+           role:type,
+           tel,
+           version:'14.1'
+        }
+        const response= API.submitData(info);
+        console.log();
+        console.log("response is "+JSON.stringify(response));
+       // this.setState({
+         // modalVisible:false,
+          //maskerVisible:false
+        //})
       }
       handleCancel=()=>{
         console.log("cancel");
@@ -219,5 +240,5 @@ class MyComponent extends Component{
 
  //export default MyComponent;
  export default connect(state=>({
-
- }),{})(MyComponent);
+      custInfoData:state.infoData
+ }),{submitData})(MyComponent);
