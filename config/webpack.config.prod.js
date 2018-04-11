@@ -52,11 +52,118 @@ module.exports={
 			'babel-runtime':path.dirname(
                 require.resolve('babel-runtime/package.json')
 			)
-		}
+		},
+	    plugins:[
+
+	    ]
+	},
+	module:{
+		strictExportPresence:true,
+		rules:[
+           {
+           	 oneOf:[
+                {
+                	test:[/\.bmp$/,/\.gif$/,/\.jpe?g$/,/\.png$/],
+                	loader:require.resolve('url-loader'),
+                	options:{
+                		limit:10000,
+                		name:'static/media/[name].[hash:8].[ext]',
+                	},
+                },
+                {
+                	test:/\.(js|jsx)$/,
+                	include:paths.appSrc,
+                	loader:require.resolve('babel-loader'),
+                	options:{
+                		babelrc:true,
+                		presets:[require.resolve('babel-preset-react-app')],
+                		compact:true,
+                		plugins:['transform-decorators-legacy'],
+                	},
+                },
+                {
+                	test:/\.(css|less)$/,
+                	loader:ExtractTextPlugin.extract(
+                        Object.assign(
+                           {
+                           	  fallback:require.resolve('style-loader'),
+                           	  use:[
+                                 {
+                                 	loader:require.resolve('css-loader'),
+                                 	options:{
+                                 		importLoaders:1,
+                                 		minimize:true,
+                                 		sourceMap:shouldUseSourceMap
+                                 	}
+                                 },{
+                                 	loader:require.resolve('less-loader')
+                                 }
+                           	  ],
+                           },
+                           extractTextPluginOptions
+                        )
+                	),
+                },
+                {
+                	loader:require.resolve('file-loader'),
+                	exclude:[/\.js$/,/\.html$/,/\.json$/],
+                	options:{
+                		name:'static/media/[name].[hash:8].[ext]',
+                	}
+                }
+           	 ]
+           }
+		]
 	},
 	plugins:[
+       new HtmlWebpackPlugin({
+       	inject:true,
+       	template:paths.appHtml,
+       	minify:{
+       		removeComments:true,
+       		collapseWhitespace:true,
+       		removeRedundantAttributes:true,
+       		minifyJS:true,
+       		minifyCSS:true,
+       		minifyURLs:true,
+       	}
+       }),
+       new webpack.DefinePlugin(env.stringified),
+       new webpack.optimize.UglifyJsPlugin({
+       	 compress:{
+       	 	warnings:false,
+       	 	comparisons:false,
+       	 	drop_console:true,
+       	 	drop_debugger:true,
+       	 },
+       	 mangle:{
+       	 	safari10:true,
+       	 },
+       	 output:{
+       	 	comments:false,
+       	 	ascii_only:true,
+       	 },
+       	 sourceMap:shouldUseSourceMap,
+       }),
+       new ExtractTextPlugin({
+       	 filename:cssFileName,
+       }),
+       new ManifestPlugin({
+       	fileName:'asset-manifest.json',
+       }),
+       new webpack.IgnorePlugin(/^\.\/local$/,/moment$/),
 
-	]
+	],
+	  // Some libraries import Node modules but don't use them in the browser.
+  // Tell Webpack to provide empty mocks for them so importing them works.
+	  node: {
+	    dgram: 'empty',
+	    fs: 'empty',
+	    net: 'empty',
+	    tls: 'empty',
+	    child_process: 'empty',
+	  },
+
 }
 
 

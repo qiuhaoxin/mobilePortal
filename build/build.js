@@ -30,7 +30,7 @@ const printBuildError = require('react-dev-utils/printBuildError');
 const measureFileSizesBeforeBuild=
       FileSizeReporter.measureFileSizesBeforeBuild;
 
-const printFileSizeAfterBuild=FileSizeReporter.printFileSizeAfterBuild;
+const printFileSizesAfterBuild=FileSizeReporter.printFileSizesAfterBuild;
 
 const useYarn=fs.existsSync(paths.yarnLockFile);
 
@@ -67,7 +67,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
      		console.log(chalk.green('Compiled successfully.\n'));
      	}
      	console.log("File sizes after gzip:\n");
-     	printFileSizeAfterBuild(
+     	printFileSizesAfterBuild(
           stats,
           previousFileSize,
           path.appBuild,
