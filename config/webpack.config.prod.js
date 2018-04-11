@@ -9,14 +9,14 @@ const paths=require('./paths');
 const getClientEnvironment=require('./env');
 const px2rem=require('postcss-px2rem');
 
-const publicPath=paths.servedPath;
+const publicPath="./" //paths.servedPath;
 
 const shouldUseRelativeAssetPath=publicPath==='./';
 
 const shouldUseSourceMap=process.env.GENERATE_SOURCEMAP!=='false';
 
 const publicUrl=publicPath.slice(0,-1);
-
+console.log("publicUrl is "+publicUrl);
 const env=getClientEnvironment(publicUrl);
 
 
@@ -37,7 +37,8 @@ module.exports={
 	entry:['babel-polyfill',require.resolve('./polyfills'),paths.appIndexJs],
 	output:{
 		path:paths.appBuild,
-		filename:'static/js/[name].[cunkhash:8].chunk.js',
+		filename:'static/js/[name].[chunkhash:8].js',
+    chunkFilename:'static/js/[name].[chunkhash:8].chunk.js',
 		publicPath:publicPath,
 		devtoolModuleFilenameTemplate:info=>
 		  path.relative(paths.appSrc,info.absoluteResourcePath)
