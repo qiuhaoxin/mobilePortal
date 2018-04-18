@@ -1,6 +1,9 @@
 
 
 class Utitlity{
+	static getInnerWidth(){
+		
+	}
 
 }
 Utitlity.prototype={
@@ -9,5 +12,6 @@ Utitlity.prototype={
 	isSupportTran:function(){
 
 		return this.isSupportTransition;
-	}
+	},
+
 }

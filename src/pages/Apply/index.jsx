@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 
 import TabImg from '../../components/TabImg/index.jsx';
 
+import {ImgText} from 'wise_webcomponents'
+
 import './index.less';
 
 const enquire=require('enquire.js')
@@ -16,6 +18,7 @@ const responsiveMap={
 export default class MyComponent extends Component{
 	constructor(props){
 	  super(props);
+
 	  this.tabImgArr=[
           {imgPath:require('../../images/product/u217.png'),appName:'经营快报',desc:`\r\n \r\n \r\n \r\n \r\n \r\n \r\n为销售管理人员提供日常销售数据统计，包括销售
           趋势，销售增长率，以及按照业务员，产品，客户，部门进行销售排名`,starCount:5,func:`\r\n \r\n \r\n \r\n \r\n \r\n \r\n 支持销售订单，销售出库单，支持
@@ -30,31 +33,67 @@ export default class MyComponent extends Component{
           desc:`\r\n \r\n \r\n \r\n \r\n \r\n \r\n 移动下单帮助企业销售人员快速录入销售订单，并且可以支持库存查看，携带销售价格政策，追踪销售订单
           审批状态，对销售订单进行催办协作。`,starCount:5,func:`\r\n \r\n \r\n \r\n \r\n \r\n \r\n 销售订单录入。库存查询，销售价格携带
           ，商品收藏，催办协作，订单打印`,depend:'销售管理',showMask:false},
-	  ],
-    this.sendTabImgArr=[
-        {imgPath:require('../../images/product/receive.png'),appName:'应收款管理'},
-        {imgPath:require('../../images/product/approval.png'),appName:'移动审批'},
-        {imgPath:require('../../images/product/alarm.png'),appName:'订单预警'},
-        {imgPath:require('../../images/product/busreport.png'),appName:'经营快报'},
-        {imgPath:require('../../images/product/stock.png'),appName:'库存查询'},
-        {imgPath:require('../../images/product/ordertracking.png'),appName:'订单跟踪'},
-        {imgPath:require('../../images/product/mobiledealer.png'),appName:'移动经销商'},
-        {imgPath:require('../../images/product/reimburse.png'),appName:'移动报销'},
-        {imgPath:require('../../images/product/mofan.png'),appName:'运营魔方'},
-        {imgPath:require('../../images/product/service.png'),appName:'CRM微服务'},
-        {imgPath:require('../../images/product/financialinsight.png'),appName:'资金洞察'},
-        {imgPath:require('../../images/product/dingzhihua.png'),appName:'定制化应用'},
-
-        {imgPath:require('../../images/product/mobileorder.png'),appName:'移动下单'},
-        {imgPath:require('../../images/product/amiba.png'),appName:'阿米巴经营'},
-        {imgPath:require('../../images/product/code.png'),appName:'K/3二维码'},
-        {imgPath:require('../../images/product/smartfactory.png'),appName:'智慧工厂'},
-        {imgPath:require('../../images/product/crm.png'),appName:'移动CRM'},
-        {imgPath:require('../../images/product/ordertracking.png'),appName:'销售价格查询'},
-        {imgPath:require('../../images/product/mobiledealer.png'),appName:'现金流管理'},
-        {imgPath:require('../../images/product/receive.png'),appName:'费用分析'},
+	  ];
+    //供应链产品
+    this.supplychain=[
+        {imgPath:require('../../images/product/alarm.png'),title:'订单预警'},
+        {imgPath:require('../../images/product/ordertracking.png'),title:'订单跟踪'},
+        {imgPath:require('../../images/product/mobileorder.png'),title:'移动下单'},
+        {imgPath:require('../../images/product/mobiledealer.png'),title:'移动经销商'},
+        {imgPath:require('../../images/product/busreport.png'),title:'经营快报'},
+        {imgPath:require('../../images/product/ordertracking.png'),title:'销售价格查询'},
+    ];
+        //财务管理产品
+    this.caiwu=[
+        {imgPath:require('../../images/product/reimburse.png'),title:'移动报销'},
+        {imgPath:require('../../images/product/receive.png'),title:'应收款管理'},
+        {imgPath:require('../../images/product/mobiledealer.png'),title:'现金流管理'},
+        {imgPath:require('../../images/product/receive.png'),title:'费用分析'},
+        {imgPath:require('../../images/product/busreport.png'),title:'固定资产服务'},
+        {imgPath:require('../../images/product/financialinsight.png'),title:'资金洞察'},
+    ];
+    //企业经营管理
+    this.qiye=[
+        {imgPath:require('../../images/product/mofan.png'),title:'运营魔方'},
+        {imgPath:require('../../images/product/amiba.png'),title:'阿米巴经营'},
+        {imgPath:require('../../images/product/approval.png'),title:'移动审批'},
+        {imgPath:require('../../images/product/dingzhihua.png'),title:'定制化应用'},
+        {imgPath:'',title:''},
+        {imgPath:'',title:''},
+    ];
+    //生成制造管理
+    this.make=[
+        {imgPath:require('../../images/product/smartfactory.png'),title:'智慧工厂'},
+        {imgPath:require('../../images/product/code.png'),title:'K/3 二维码'},
+        {imgPath:require('../../images/product/stock.png'),title:'库存查询'},
+        {imgPath:'',title:''},
+        {imgPath:'',title:''},
+        {imgPath:'',title:''},
+    ];
+    //客户关系管理
+    this.relation=[
+        {imgPath:require('../../images/product/smartfactory.png'),title:'CRM微服务'},
+        {imgPath:require('../../images/product/code.png'),title:'移动CRM'},
+        {imgPath:'',title:''},
+        {imgPath:'',title:''},
+        {imgPath:'',title:''},
+        {imgPath:'',title:''},
     ]
 	}
+  state={
+    tabImgArr:[
+          {id:0,imgPath:require('../../images/product/u217.png'),title:'经营快报',description:`\r\n \r\n \r\n \r\n \r\n \r\n \r\n为销售管理人员提供日常销售数据统计，包括销售
+          趋势，销售增长率，以及按照业务员，产品，客户，部门进行销售排名`,depend:'\r\n \r\n \r\n \r\n \r\n \r\n \r\n 销售管理，应收款管理',func:`\r\n \r\n \r\n \r\n \r\n \r\n \r\n 支持销售订单，销售出库单，支持
+          按日月年统计销售额度，支持图表展示趋势及排名。`,showMasker:false},
+          {id:1,imgPath:require('../../images/product/u209.png'),title:'移动审批',description:`\r\n \r\n \r\n \r\n \r\n \r\n \r\n 移动审批实现了企业管理人员即时收到流程通知通过手机终端对众多企业业务流程随时进行审批。移动审批实现了
+          随时随地审批，让审批更加方便，轻松。`,depend:`\r\n \r\n \r\n \r\n \r\n \r\n \r\n 不依赖模块，K3使用了那些模块，就支持哪些模块单据的审批。单据要启用审批流，不支持
+          普通审核和多级审核。新单，老单均可支持`,func:`\r\n \r\n \r\n \r\n \r\n \r\n \r\n 支持一用户对多个账套的业务进行审批，支持EBOS
+          单据包括：费用（借款）申请单。费用报销单，出差（借款）申请单，差旅费报销单；支持老单包括：销售订单，采购
+          订单，付款单`,showMasker:false},
+          {id:2,imgPath:require('../../images/product/u213.png'),title:'移动下单',description:`\r\n \r\n \r\n \r\n \r\n \r\n \r\n 移动下单帮助企业销售人员快速录入销售订单，并且可以支持库存查看，携带销售价格政策，追踪销售订单
+          审批状态，对销售订单进行催办协作。`,depend:'\r\n \r\n \r\n \r\n \r\n \r\n \r\n 销售管理',func:`\r\n \r\n \r\n \r\n \r\n \r\n \r\n 销售订单录入。库存查询，销售价格携带
+          ，商品收藏，催办协作，订单打印`,showMasker:false},
+  ]};
   componentDidMount(){
       Object.keys(responsiveMap).map(item=>{
          enquire.register(responsiveMap[item],{
@@ -68,14 +107,57 @@ export default class MyComponent extends Component{
          })
       })
   }
+  maskerRender=(record)=>{
+        return (
+          <div className="product-imgtext-masker">
+             <div style={{padding:'40px 30px'}}>
+                <div className="product-imgtext-masker-title">{record.title}</div>
+                <div className="product-imgtext-masker-desc">
+                    {record.description}
+                </div>
+                <div>
+                  <div>主要功能:</div><div>{record.func}</div>
+                </div>
+                <div>
+                  <div>依赖模块:</div><div>{record.depend}</div>
+                </div>
+             </div>
+          </div>
+        )
+     }
+  handleMouseEnter=(target,item)=>{
+        let {tabImgArr}=this.state;
+        tabImgArr.forEach(dataItem=>{
+          if(dataItem.id==item.id){
+              dataItem['showMasker']=true;
+          }
+        })
+        tabImgArr=tabImgArr.filter(dataItem=>dataItem.id!=-1);
+        this.setState({
+          tabImgArr
+        })
+  }
+  handleMouseout=(target,item)=>{
+        let {tabImgArr}=this.state;
+        tabImgArr.forEach(dataItem=>{
+          if(dataItem.id==item.id){
+              dataItem['showMasker']=false;
+          }
+        });
+        tabImgArr=tabImgArr.filter(dataItem=>dataItem.id!=-1);
+        this.setState({
+          tabImgArr
+        })
+  }
 	render(){
+     const {tabImgArr}=this.state;
 	   return (
           <div className="apply-wrapper">
               <div className="apply-desc">
                    <div className="apply-desc-first h1">截止目前，K/3 移动轻应用已有650000+访问量</div>
                    <div className="apply-desc-second h2">K/3 移动工作台汇集10+轻应用产品，搭载移动BOS平台，提供面向企业定制化轻应用产品生成服务</div>
               </div>
-              <TabImg dataSource={this.tabImgArr} paramsStyle={{showMask:true,borderd:true,classNameStr:'imgtext-1',nextClass:'tabimg-wrapper-1'}} test={true} />
+              <ImgText dataSource={tabImgArr} className="product-imgtext" maskerRender={this.maskerRender} mouseout={this.handleMouseout} mouseover={this.handleMouseEnter} />
               <div className="apply-pro">
                    <div className="apply-pro-title">
                        汇集在K/3 移动工作台的轻应用产品
@@ -83,9 +165,41 @@ export default class MyComponent extends Component{
                    <div className="apply-pro-title1">
                        除移动BOS定制化轻应用产品外，汇集包含财务、供应链、制造及客户关系管理领域的10+个轻应用产品
                    </div>
+                   <div className="apply-pro-wrapper">
+                       <div className="apply-pro-module">供应链管理</div>
+                       <ImgText dataSource={this.supplychain} className="apply-imgtext"/>
+                   </div>
+                   <div className="apply-pro-wrapper">
+                       <div className="apply-pro-module">财务管理</div>
+                       <ImgText dataSource={this.caiwu} className="apply-imgtext"/>
+                   </div>
+                   <div className="apply-pro-wrapper">
+                       <div className="apply-pro-module">企业经营管理</div>
+                       <ImgText dataSource={this.qiye} className="apply-imgtext"/>
+                   </div>
+                  <div className="apply-pro-wrapper">
+                       <div className="apply-pro-module">生产制造管理</div>
+                       <ImgText dataSource={this.make} className="apply-imgtext"/>
+                   </div>
+                   <div className="apply-pro-wrapper">
+                       <div className="apply-pro-module">客户关系管理</div>
+                       <ImgText dataSource={this.relation} className="apply-imgtext"/>
+                   </div>
               </div>
-              <TabImg dataSource={this.sendTabImgArr} paramsStyle={{showMask:false,borderd:false,classNameStr:'imgtext-2',nextClass:'tabimg-wrapper-2',styleStr:{width:'60%',margin:'30px 20%' ,   background:'#f2f2f2'}}}  />
           </div>
 	   )
 	}
 }
+/*
+*              <TabImg dataSource={this.sendTabImgArr} paramsStyle={{showMask:false,borderd:false,classNameStr:'imgtext-2',nextClass:'tabimg-wrapper-2',styleStr:{width:'60%',margin:'30px 20%' ,   background:'#f2f2f2'}}}  />
+
+
+              <div className="apply-desc">
+                   <div className="apply-desc-first h1">截止目前，K/3 移动轻应用已有650000+访问量</div>
+                   <div className="apply-desc-second h2">K/3 移动工作台汇集10+轻应用产品，搭载移动BOS平台，提供面向企业定制化轻应用产品生成服务</div>
+              </div>
+              <TabImg dataSource={this.tabImgArr} paramsStyle={{showMask:true,borderd:true,classNameStr:'imgtext-1',nextClass:'tabimg-wrapper-1'}} test={true} />
+
+
+                            <TabImg dataSource={this.tabImgArr} paramsStyle={{showMask:true,borderd:true,classNameStr:'imgtext-1',nextClass:'tabimg-wrapper-1'}} test={true} />
+*/

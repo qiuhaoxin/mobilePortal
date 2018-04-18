@@ -20,7 +20,7 @@ const render=Component=>{
           </AppContainer>
       </Provider>,
       document.getElementById('root')
-	)
+	);
 }
 
 render(Route);
