@@ -8,6 +8,7 @@ const deployment=asyncComponent(()=>import('../pages/Deployment/index'));
 const apply=asyncComponent(()=>import('../pages/Apply/index'));
 const download=asyncComponent(()=>import('../pages/Download/index'));
 const help=asyncComponent(()=>import('../pages/Help/index'));
+const video=asyncComponent(()=>import('../pages/Video/index'));
 
 export default class MyComponent extends Component{
 	render(){
@@ -22,7 +23,9 @@ export default class MyComponent extends Component{
                   <Route path="/apply" component={apply}/>
                   <Route path="/help" component={help}/>
                   <Route path="/download" component={download} />
+                  <Route path="/video/:videoName" component={video}/>
                 </div>
+
               </Switch>
            </Router>
 

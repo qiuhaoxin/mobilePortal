@@ -35,39 +35,68 @@ class MyComponent extends Component{
         this.imgTabArr7=[
                {imgPath:require('../../images/download/dl_print.png'),title:'移动报销打印服务助手（免安装）',desc:'云之家移动报销中打印单据需要使用打印助手',
                innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>下载</span></div>},
+               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
+               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/移动报销打印助手.rar">下载</a></span></div>},
                {imgPath:require('../../images/download/dl_package.png'),title:'移动审核组件调用异常解决方案',desc:'解决移动审批组件调用异常的问题',
                innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
                render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>下载</span></div>},
           ];
+        this.imgTabArr12=[
+               {imgPath:require('../../images/download/dl_package.png'),title:'PDA资产盘点安装包',desc:'固定资产进行盘点时需要安装盘点软件方可进行后续的扫描盘点',
+               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
+               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
+               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/PDA资产盘点安装包.rar">下载</a></span></div>},
+               {imgPath:require('../../images/download/dl_package.png'),title:'',desc:'固定资产进行盘点时需要安装盘点软件方可进行后续的扫描盘点',
+               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
+               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
+               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/PDA资产盘点安装包.rar">下载</a></span></div>},
+        ];  
         this.imgTabArr8=[
                {imgPath:require('../../images/download/dl_play.png'),title:'K3WISE云管理平台配置讲解视频教程.mp4',desc:'',
                innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>下载</span></div>},
+               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
+               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/云管理平台配置讲解视频教程.rar">下载</a></span></div>},
+               
                {imgPath:require('../../images/download/dl_play.png'),title:'K3WISE轻应用待办消息配置视频教程.mp4',desc:'',
                innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>下载</span></div>},
+               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
+               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用待办消息配置视频教程.rar">下载</a>
+               </span></div>},
         ];
         this.imgTabArr9=[
                {imgPath:require('../../images/download/dl_play.png'),title:'K3WISE轻应用移动审批配置视频教程.mp4',desc:'',
                innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>下载</span></div>},
+               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
+               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用移动审批配置视频教程.rar">下载</a>
+               </span></div>},
                {imgPath:require('../../images/download/dl_play.png'),title:'K3WISE轻应用移动报销配置视频教程.mp4',desc:'',
                innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>下载</span></div>},
+               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
+               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用移动报销配置视频教程.rar">下载</a>
+               </span></div>},
         ];
         this.imgTabArr10=[
                {imgPath:require('../../images/download/dl_play.png'),title:'K3WISE轻应用移动下单配置视频教程.mp4',desc:'',
                innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>下载</span></div>},
+               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
+               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用移动下单配置视频教程.rar">下载</a>
+               </span></div>},
                {imgPath:require('../../images/download/dl_play.png'),title:'K3WISE轻应用订单跟踪配置视频教程.mp4',desc:'',
                innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>下载</span></div>},
+               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
+               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用订单跟踪配置视频教程.rar">下载</a>
+               </span></div>},
         ];
         this.imgTabArr11=[
                {imgPath:require('../../images/download//dl_play.png'),title:'K3WISE轻应用应收款管理配置视频教程.mp4',desc:'',
                innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>下载</span></div>},
+               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
+               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用应收款管理配置视频教程.rar">下载</a>
+               </span></div>},
+              {imgPath:require('../../images/download//dl_play.png'),title:'',desc:'',
+               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
+               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
+               </span></div>},
         ];
         this.dlContent={
             "erp":[
@@ -199,6 +228,7 @@ class MyComponent extends Component{
                <div className='download_module'>
                   <div>其他相关下载</div>
                   <ImgText dataSource={this.imgTabArr7} layout="row" className='dll-imgtext'/>
+                  <ImgText dataSource={this.imgTabArr12} layout="row" className="dll-imgtext"/>
                </div>
               <div className='download_module' style={{marginBottom:'50px'}}>
                   <div style={{marginBottom:'50px'}}>视频资料下载</div>

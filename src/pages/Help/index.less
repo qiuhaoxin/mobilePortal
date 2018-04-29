@@ -1,7 +1,21 @@
+@import '../../style/theme/default.less';
 .container{
 	border-top:1px solid #eee;
 	.qhx-imgtext{
-    width:70%;
+	&.help-imgtext-pdf{
+		@media screen{
+			@media (min-width:@screen-lg){
+		          width:94%;
+			}
+			@media (min-width:@screen-xl){
+		        width:85%;
+			}
+			@media (min-width:@screen-xxl){
+		        width:80%;
+			}
+		}
+	}
+
     margin:50px auto;
 	& ul{
 	  & li{
@@ -90,3 +104,8 @@
 	}
 }
 }
+
+.qhx-imgtext-row{
+	cursor:pointer;
+}
+

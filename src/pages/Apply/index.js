@@ -58,26 +58,26 @@ export default class MyComponent extends Component{
         {imgPath:require('../../images/product/amiba.png'),title:'阿米巴经营'},
         {imgPath:require('../../images/product/approval.png'),title:'移动审批'},
         {imgPath:require('../../images/product/dingzhihua.png'),title:'定制化应用'},
-        {imgPath:'',title:''},
-        {imgPath:'',title:''},
+        {imgPath:require('../../images/product/stock.png'),title:''},
+        {imgPath:require('../../images/product/stock.png'),title:''},
     ];
     //生成制造管理
     this.make=[
         {imgPath:require('../../images/product/smartfactory.png'),title:'智慧工厂'},
         {imgPath:require('../../images/product/code.png'),title:'K/3 二维码'},
         {imgPath:require('../../images/product/stock.png'),title:'库存查询'},
-        {imgPath:'',title:''},
-        {imgPath:'',title:''},
-        {imgPath:'',title:''},
+        {imgPath:require('../../images/product/stock.png'),title:''},
+        {imgPath:require('../../images/product/stock.png'),title:''},
+        {imgPath:require('../../images/product/stock.png'),title:''},
     ];
     //客户关系管理
     this.relation=[
         {imgPath:require('../../images/product/smartfactory.png'),title:'CRM微服务'},
         {imgPath:require('../../images/product/code.png'),title:'移动CRM'},
-        {imgPath:'',title:''},
-        {imgPath:'',title:''},
-        {imgPath:'',title:''},
-        {imgPath:'',title:''},
+        {imgPath:require('../../images/product/code.png'),title:''},
+        {imgPath:require('../../images/product/code.png'),title:''},
+        {imgPath:require('../../images/product/code.png'),title:''},
+        {imgPath:require('../../images/product/code.png'),title:''},
     ]
 	}
   state={
@@ -190,16 +190,3 @@ export default class MyComponent extends Component{
 	   )
 	}
 }
-/*
-*              <TabImg dataSource={this.sendTabImgArr} paramsStyle={{showMask:false,borderd:false,classNameStr:'imgtext-2',nextClass:'tabimg-wrapper-2',styleStr:{width:'60%',margin:'30px 20%' ,   background:'#f2f2f2'}}}  />
-
-
-              <div className="apply-desc">
-                   <div className="apply-desc-first h1">截止目前，K/3 移动轻应用已有650000+访问量</div>
-                   <div className="apply-desc-second h2">K/3 移动工作台汇集10+轻应用产品，搭载移动BOS平台，提供面向企业定制化轻应用产品生成服务</div>
-              </div>
-              <TabImg dataSource={this.tabImgArr} paramsStyle={{showMask:true,borderd:true,classNameStr:'imgtext-1',nextClass:'tabimg-wrapper-1'}} test={true} />
-
-
-                            <TabImg dataSource={this.tabImgArr} paramsStyle={{showMask:true,borderd:true,classNameStr:'imgtext-1',nextClass:'tabimg-wrapper-1'}} test={true} />
-*/
