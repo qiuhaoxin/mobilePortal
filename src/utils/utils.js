@@ -2,7 +2,7 @@
 
 class Utitlity{
 	static getInnerWidth(){
-		
+		  
 	}
 
 }
