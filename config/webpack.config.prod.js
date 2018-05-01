@@ -30,7 +30,7 @@ function resolve(dir){
 const cssFileName="static/css/[name].[contenthash:8].css";
 
 const extractTextPluginOptions=shouldUseRelativeAssetPath ? {publicPath:Array(cssFileName.split('/').length).join('../')} : {};
-
+console.log("production");
 module.exports={
 	bail:true,
 	devtool:false,
