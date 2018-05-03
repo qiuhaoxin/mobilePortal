@@ -39,7 +39,8 @@ class MyComponent extends Component{
                <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/移动报销打印助手.rar">下载</a></span></div>},
                {imgPath:require('../../images/download/dl_package.png'),title:'移动审核组件调用异常解决方案',desc:'解决移动审批组件调用异常的问题',
                innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>下载</span></div>},
+               render:()=><div className='download-dl'><a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/移动审批组件调用问题.rar">下载</a></div>
+               },
           ];
         this.imgTabArr12=[
                {imgPath:require('../../images/download/dl_package.png'),title:'PDA资产盘点安装包',desc:'固定资产进行盘点时需要安装盘点软件方可进行后续的扫描盘点',
@@ -138,6 +139,7 @@ class MyComponent extends Component{
           )
       }
       handleDownloadClick=(data)=>{
+          console.log("data is "+data['title']);
           const {custInfoData,submitData}=this.props;
           console.log("custInfoData is "+JSON.stringify(custInfoData)+" and submitData is "+submitData);
           if(custInfoData && custInfoData['tel']!=''){
