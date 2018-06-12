@@ -83,7 +83,7 @@ export default class MyConponent extends Component{
               </div>
               <div className="deploy-wrapper-h13">
                    <div>恭喜你！完成所有部署，畅享移动办公！</div>
-                   <a>点击查看详细部署文档</a>
+                   <a href="http://k3mobile.kingdee.com:8800/lighthelp/">点击查看详细部署文档</a>
               </div>
           </div>
 	   )

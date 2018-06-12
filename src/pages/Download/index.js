@@ -1,12 +1,13 @@
 import React,{Component} from 'react';
 import './index.less';
 import dlImg from '../../images/download/dl_img.png';
-import {ImgText,Exchange,Modal,Select,Masker} from 'wise_webcomponents';
+import {ImgText,Exchange,Modal,Select,Masker,DownLoad} from 'wise_webcomponents';
 import download from '../../images/download/download.png';
 import {connect} from 'react-redux';
 import {getProvince,getCity} from '../../data/province.js';
 import {submitData} from '../../store/download/action';
 import API from '../../api/api';
+import {downloadFile} from '../../utils/utils';
 
 class MyComponent extends Component{
      constructor(props){
@@ -18,13 +19,15 @@ class MyComponent extends Component{
         this.provinceData=getProvince();
         this.govermentData=['客户','伙伴代理','分公司机构'];
         this.cityData=getCity('广东');
+        this.dataUrl="";//下载的url
+        this.downloadData="";
         this.erpData=[
            ['K/3WISE13.1版本'],
            ['K/3WISE14.0以上版本']
         ]
         this.imgTabArr=[
                {imgPath:require('../../images/download/package.png'),title:'云之家',desc:'最新版本:V9',
-               render:()=><Exchange dataSource={[]} downloadEvent={this.handleDownloadClick} imgPath={require('../../images/download/download.png')}/>},
+               render:()=><Exchange dataSource={[]} defaultClick={this.handleDownloadYZJ} imgPath={require('../../images/download/download.png')}/>},
 
                {imgPath:require('../../images/download/package.png'),title:'移动云管理平台',desc:'最新版本：V14.3.11.0',
                 render:()=><Exchange dataSource={this.erpData} downloadEvent={this.handleDownloadClick} imgPath={require('../../images/download/download.png')}/>},
@@ -34,68 +37,65 @@ class MyComponent extends Component{
         ];
         this.imgTabArr7=[
                {imgPath:require('../../images/download/dl_print.png'),title:'移动报销打印服务助手（免安装）',desc:'云之家移动报销中打印单据需要使用打印助手',
-               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
-               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/移动报销打印助手.rar">下载</a></span></div>},
+                innerRender:()=><div className='download-row'><span className="download-date">更新日期:</span><span className="download-time">2018-05-12</span>
+               <span className="download-times">下载次数:</span><span className="download-count">271</span></div>,
+               render:()=><div className='download-dl'><DownLoad dataUrl="http://k3mobile.kingdee.com:8800/wise/DowloadServer/移动报销打印助手.rar" /></div>},
                {imgPath:require('../../images/download/dl_package.png'),title:'移动审核组件调用异常解决方案',desc:'解决移动审批组件调用异常的问题',
-               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/移动审批组件调用问题.rar">下载</a></div>
+                innerRender:()=><div className='download-row'><span className="download-date">更新日期:</span><span className="download-time">2018-05-12</span>
+               <span className="download-times">下载次数:</span><span className="download-count">271</span></div>,
+               render:()=><div className='download-dl'><DownLoad dataUrl="http://k3mobile.kingdee.com:8800/wise/DowloadServer/移动审批组件调用问题.rar"/></div>
                },
           ];
         this.imgTabArr12=[
                {imgPath:require('../../images/download/dl_package.png'),title:'PDA资产盘点安装包',desc:'固定资产进行盘点时需要安装盘点软件方可进行后续的扫描盘点',
-               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
-               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/PDA资产盘点安装包.rar">下载</a></span></div>},
+                innerRender:()=><div className='download-row'><span className="download-date">更新日期:</span><span className="download-time">2018-05-12</span>
+               <span className="download-times">下载次数:</span><span className="download-count">271</span></div>,
+               render:()=><div className='download-dl'>
+               <DownLoad dataUrl="http://k3mobile.kingdee.com:8800/wise/DowloadServer/PDA资产盘点安装包.rar" /></div>},
                {imgPath:require('../../images/download/dl_package.png'),title:'',desc:'固定资产进行盘点时需要安装盘点软件方可进行后续的扫描盘点',
-               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
-               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/PDA资产盘点安装包.rar">下载</a></span></div>},
+               innerRender:()=><div className='download-row'><span className="download-date">更新日期:</span><span className="download-time">2018-05-12</span>
+               <span className="download-times">下载次数:</span><span className="download-count">271</span></div>,
+               render:()=><div className='download-dl'></div>},
         ];  
         this.imgTabArr8=[
                {imgPath:require('../../images/download/dl_play.png'),title:'K3WISE云管理平台配置讲解视频教程.mp4',desc:'',
-               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
-               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/云管理平台配置讲解视频教程.rar">下载</a></span></div>},
+                innerRender:()=><div className='download-row'><span className="download-date">更新日期:</span><span className="download-time">2018-05-12</span>
+               <span className="download-times">下载次数:</span><span className="download-count">271</span></div>,
+               render:()=><div className='download-dl'><DownLoad dataUrl="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/云管理平台配置讲解视频教程.rar"/></div>},
                
                {imgPath:require('../../images/download/dl_play.png'),title:'K3WISE轻应用待办消息配置视频教程.mp4',desc:'',
-               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
-               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用待办消息配置视频教程.rar">下载</a>
-               </span></div>},
+                innerRender:()=><div className='download-row'><span className="download-date">更新日期:</span><span className="download-time">2018-05-12</span>
+                <span className="download-times">下载次数:</span><span className="download-count">271</span></div>,
+               render:()=><div className='download-dl'><DownLoad dataUrl="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用待办消息配置视频教程.rar" /></div>},
         ];
         this.imgTabArr9=[
                {imgPath:require('../../images/download/dl_play.png'),title:'K3WISE轻应用移动审批配置视频教程.mp4',desc:'',
-               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
-               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用移动审批配置视频教程.rar">下载</a>
-               </span></div>},
+                innerRender:()=><div className='download-row'><span className="download-date">更新日期:</span><span className="download-time">2018-05-12</span>
+                <span className="download-times">下载次数:</span><span className="download-count">271</span></div>,
+               render:()=><div className='download-dl'><DownLoad dataUrl="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用移动审批配置视频教程.rar"/></div>},
                {imgPath:require('../../images/download/dl_play.png'),title:'K3WISE轻应用移动报销配置视频教程.mp4',desc:'',
-               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
-               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用移动报销配置视频教程.rar">下载</a>
-               </span></div>},
+                innerRender:()=><div className='download-row'><span className="download-date">更新日期:</span><span className="download-time">2018-05-12</span>
+                <span className="download-times">下载次数:</span><span className="download-count">271</span></div>,
+               render:()=><div className='download-dl'><DownLoad dataUrl="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用移动报销配置视频教程.rar"/></div>},
         ];
         this.imgTabArr10=[
                {imgPath:require('../../images/download/dl_play.png'),title:'K3WISE轻应用移动下单配置视频教程.mp4',desc:'',
-               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
-               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用移动下单配置视频教程.rar">下载</a>
-               </span></div>},
+                innerRender:()=><div className='download-row'><span className="download-date">更新日期:</span><span className="download-time">2018-05-12</span>
+                <span className="download-times">下载次数:</span><span className="download-count">271</span></div>,
+               render:()=><div className='download-dl'><DownLoad dataUrl="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用移动下单配置视频教程.rar"/></div>},
                {imgPath:require('../../images/download/dl_play.png'),title:'K3WISE轻应用订单跟踪配置视频教程.mp4',desc:'',
-               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
-               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用订单跟踪配置视频教程.rar">下载</a>
-               </span></div>},
+                innerRender:()=><div className='download-row'><span className="download-date">更新日期:</span><span className="download-time">2018-05-12</span>
+                <span className="download-times">下载次数:</span><span className="download-count">271</span></div>,
+               render:()=><div className='download-dl'><DownLoad dataUrl="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用订单跟踪配置视频教程.rar"/></div>},
         ];
         this.imgTabArr11=[
                {imgPath:require('../../images/download//dl_play.png'),title:'K3WISE轻应用应收款管理配置视频教程.mp4',desc:'',
-               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
-               render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
-               <a href="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用应收款管理配置视频教程.rar">下载</a>
-               </span></div>},
+                innerRender:()=><div className='download-row'><span className="download-date">更新日期:</span><span className="download-time">2018-05-12</span>
+                <span className="download-times">下载次数:</span><span className="download-count">271</span></div>,
+               render:()=><div className='download-dl'><DownLoad dataUrl="http://k3mobile.kingdee.com:8800/wise/DowloadServer/video/K3WISE轻应用应收款管理配置视频教程.rar"/></div>},
               {imgPath:require('../../images/download//dl_play.png'),title:'',desc:'',
-               innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
+                innerRender:()=><div className='download-row'><span className="download-date">更新日期:</span><span className="download-time">2018-05-12</span>
+               <span className="download-times">下载次数:</span><span className="download-count">271</span></div>,
                render:()=><div className='download-dl'><span className="download_btn" onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}>
                </span></div>},
         ];
@@ -121,6 +121,9 @@ class MyComponent extends Component{
           concat:'',
           goverment:'',
       }
+      handleDownloadYZJ=()=>{
+        location.href="https://www.yunzhijia.com/home/?m=open&a=download&utm_source=&utm_medium=";
+      }
       renderDownload=(key)=>{
           const content=this.dlContent[key];
           console.log("content is "+JSON.stringify(content));
@@ -139,12 +142,13 @@ class MyComponent extends Component{
           )
       }
       handleDownloadClick=(data)=>{
-          console.log("data is "+data['title']);
+          console.log("data is "+JSON.stringify(data));
           const {custInfoData,submitData}=this.props;
           console.log("custInfoData is "+JSON.stringify(custInfoData)+" and submitData is "+submitData);
           if(custInfoData && custInfoData['tel']!=''){
 
           }else{
+            this.downloadData=data;
             this.setState({
                modalVisible:true,
                maskerVisible:true
@@ -164,14 +168,16 @@ class MyComponent extends Component{
       handleDownloadMouseout=(e)=>{
          e.target.style['background']="rgb(0,153,255)";
       }
-      submitDataAsync=async (params)=>{
+      submitDataAsync=async (params,callBack)=>{
           const {submitData}=this.props;
           const response=await API.submitData(params);
           console.log("reponse is "+JSON.stringify(response));
           submitData((response && response.Data && response.Data[0]));
+          if(callBack)callBack();
 
       }
       handleBtnOk=()=>{
+        const _this=this;
         const {provinceVal,cityVal,type,tel,concat,goverment}=this.state;
         const {submitData}=this.props;
         let info={
@@ -185,17 +191,43 @@ class MyComponent extends Component{
            tel,
            version:'14.1'
         }
-        this.submitDataAsync(info);
-       // this.setState({
-         // modalVisible:false,
-          //maskerVisible:false
-        //})
+        this.submitDataAsync(info,function(){
+            switch(_this.downloadData){
+              case "K/3WISE13.1版本":
+                _this.dataUrl="http://k3mobile.kingdee.com:8800/wise/DowloadServer/K3WISE移动云管理平台13.1版本.rar";
+              break;
+              case "K/3WISE14.0以上版本":
+                _this.dataUrl="http://k3mobile.kingdee.com:8800/wise/DowloadServer/K3WISE移动云管理平台14.0以上版本.rar";
+              break;
+              case "13.1":
+                 _this.dataUrl="http://k3mobile.kingdee.com:8800/wise/patch/PT098878_for13.1.rar";
+              break;
+              case "14.0":
+                _this.dataUrl="http://k3mobile.kingdee.com:8800/wise/patch/PT095759_for14.0.rar";
+             break;
+              case "14.2":
+                 _this.dataUrl="http://k3mobile.kingdee.com:8800/wise/patch/PT101729_for14.2.rar";
+              break;
+              case "14.3":
+                 _this.dataUrl="http://k3mobile.kingdee.com:8800/wise/patch/PT114645_for14.3.rar";
+              break;
+            }
+            downloadFile(_this.dataUrl);
+            _this.setState({
+              modalVisible:false,
+              maskerVisible:false
+            })
+        });
       }
       handleCancel=()=>{
         console.log("cancel");
           this.setState({
             modalVisible:false,
-            maskerVisible:false
+            maskerVisible:false,
+            tel:'',
+            type:'',
+            concat:'',
+            goverment:'',
           })
       }
       handleSelect=(value,key)=>{
